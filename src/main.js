@@ -1,5 +1,4 @@
 import {renderWorld, renderStats} from "./display";
-import {createAgents} from './helpers';
 import Fish from "./fish";
 import Shark from './shark';
 import World from "./world";
