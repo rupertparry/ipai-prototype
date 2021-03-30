@@ -18,7 +18,7 @@ export const eatNearbyFish = {
 				Math.abs(agent.location[1] - this.location[1]) <= 2
 			)
 		})
-		if (nearbyFish.length > 0) console.log(`A ${this.emoji} has eaten ${nearbyFish.length} ${nearbyFish[0].emoji}`);
+		if (nearbyFish.length > 0) console.log(`A ${this.emoji} has eaten ${nearbyFish.length} ${nearbyFish[0].emoji}!`);
 		this.world.removeAgents(nearbyFish);
 	}
 }

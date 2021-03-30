@@ -20,7 +20,6 @@ export default class Agent {
 	}
 
 	breed() {
-		console.log(this.age)
 		if (this.age >= this.breedTime && !this.hasBred) {
 			for (let i = 0; i < this.offspring; i++) {
 				console.log(`A new ${this.emoji} is born!`);
@@ -32,7 +31,7 @@ export default class Agent {
 
 	die() {
 		if (this.age >= this.lifespan) {
-			console.log(`A ${this.emoji} is dying...`)
+			console.log(`A ${this.emoji} is dying!`)
 			this.world.removeAgent(this);
 		}
 	}
