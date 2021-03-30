@@ -31,7 +31,7 @@ export default class Agent {
 
 	die() {
 		if (this.age >= this.lifespan) {
-			console.log(`A ${this.emoji} is dying!`)
+			console.log(`A ${this.emoji} is dying of old age.`)
 			this.world.removeAgent(this);
 		}
 	}
