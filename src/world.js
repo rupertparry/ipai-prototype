@@ -5,6 +5,16 @@ export default class World {
 		this.agents = [];
 	}
 
+	createAgents(opts) {
+		for (let i = 0; i < opts.amount; i++) {
+			const agent = new opts.type(this);
+			for (const protocol of opts.protocols) {
+				agent.applyProtocol(protocol)
+			}
+			this.agents.push(agent);
+		}
+	}
+
 	addAgent(agent) {
 		const AgentClass = agent.constructor;
 		const location = agent.location;
@@ -28,7 +38,7 @@ export default class World {
 
 	tick() {
 		this.time++;
-		
+
 		for (const agent of this.agents) {
 			agent.tick();
 

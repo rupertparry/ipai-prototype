@@ -1,32 +1,31 @@
 import {renderWorld, renderStats} from "./display";
+import {createAgents} from './helpers';
 import Fish from "./fish";
 import Shark from './shark';
 import World from "./world";
 import {swimRandomly, eatNearbyFish} from './protocols';
 
-const world = new World();
-
-const fishes = []
-for (let i = 0; i < 4; i++) {
-	const fish = new Fish(world);
-	fish.applyProtocol(swimRandomly);
-	fishes.push(fish);
-}
-
-const sharks = []
-for (let i = 0; i < 4; i++) {
-	const shark = new Shark(world);
-	shark.applyProtocol(swimRandomly);
-	shark.applyProtocol(eatNearbyFish);
-	sharks.push(shark);
-}
-
-world.agents = [...fishes, ...sharks];
-
+/* CONFIG */
 
 const fps = 1;
-const fpsInterval = 1000 / fps;
-let startTime = Date.now();
+
+/* SET UP WORLD */
+
+const world = new World();
+
+world.createAgents({
+	type: Fish,
+	amount: 5,
+	protocols: [swimRandomly]
+});
+
+world.createAgents({
+	type: Shark,
+	amount: 4,
+	protocols: [swimRandomly]
+});
+
+/* START */
 
 function loop() {
 	requestAnimationFrame(loop)
@@ -40,4 +39,6 @@ function loop() {
 		renderStats(world, '#stats');
 	}
 }
+const fpsInterval = 1000 / fps;
+let startTime = Date.now();
 loop();
