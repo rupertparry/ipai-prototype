@@ -21,7 +21,7 @@ world.createAgents({
 world.createAgents({
 	type: Shark,
 	amount: 4,
-	protocols: [swimRandomly]
+	protocols: [swimRandomly, eatNearbyFish]
 });
 
 /* START */
