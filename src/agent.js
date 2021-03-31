@@ -2,6 +2,12 @@ export default class Agent {
 	constructor(world) {
 		this.world = world;
 		this.birthTime = this.world.time;
+		this.protocols = [];
+
+		this.location = [
+			Math.floor(Math.random() * world.size[0]),
+			Math.floor(Math.random() * world.size[1])
+		];
 
 		this.breedTime = 10;
 		this.offspring = 2;
@@ -36,8 +42,9 @@ export default class Agent {
 		}
 	}
 
+
 	applyProtocol(protocol) {
-		this.protocol = protocol;
+		this.protocols.push(protocol);
 		Object.keys(protocol).forEach((func) => {
 			this[func] = protocol[func].bind(this);
 		});
@@ -46,10 +53,8 @@ export default class Agent {
 
 
 // const offspring = Math.max(0, Math.ceil(normalRandom(this.sdOffspring, this.meanOffspring)));
-function normalRandom(sd, mean) {
-	/* Generate two independent random numbers in the [0, 1] range */
-	const u = Math.random();
-	const v = Math.random();
-	/* calculate the normally distributed random values x and y from them */
-	return sd * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v) + mean;
-}
+// function normalRandom(sd, mean) {
+// 	const u = Math.random();
+// 	const v = Math.random();
+// 	return sd * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v) + mean;
+// }

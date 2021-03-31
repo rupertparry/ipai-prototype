@@ -4,12 +4,11 @@ export default class Fish extends Agent {
 	constructor(world) {
 		super(world);
 		this.emoji = '🐠';
-		
-		// Random start location for now...
-		this.location = [
-			Math.floor(Math.random() * world.size[0]),
-			Math.floor(Math.random() * world.size[1])
-		];
+		this.swimDistance = 1;
+
+		this.breedTime = 8;
+		this.offspring = 2;
+		this.lifespan = 20;
 	}
 
 	tick() {
@@ -19,6 +18,9 @@ export default class Fish extends Agent {
 	}
 
 	swim() {
-		// Protocol to govern this action
+		const deltaY = Math.round(2 * (Math.random() - 0.5));
+		const deltaX = -this.swimDistance;
+		this.location[0] += deltaX;
+		this.location[1] += deltaY;
 	}
 }

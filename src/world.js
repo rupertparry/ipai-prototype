@@ -17,13 +17,11 @@ export default class World {
 
 	addAgent(agent) {
 		const AgentClass = agent.constructor;
-		const location = agent.location;
-		const protocol = agent.protocol;
+		const protocols = agent.protocols;
 		const newAgent = new AgentClass(this);
 
 		// if (location) newAgent.location = location;
-		if (protocol) newAgent.applyProtocol(protocol);
-
+		protocols.forEach(p => newAgent.applyProtocol(p));
 		this.agents.push(newAgent);
 	}
 
@@ -34,6 +32,21 @@ export default class World {
 
 	removeAgents(agents) {
 		agents.forEach(agent => this.removeAgent(agent));
+	}
+
+	getAgentsOfType(type) {
+		return this.agents.filter(agent => agent.constructor.name === type);
+	}
+
+	getNearbyAgents(target, radius, type) {
+		return this.agents.filter((agent) => {
+			const typeCondition = type ? agent.constructor.name === type : true;
+			return (
+				typeCondition &&
+				Math.abs(agent.location[0] - target.location[0]) <= radius &&
+				Math.abs(agent.location[1] - target.location[1]) <= radius
+			)
+		})
 	}
 
 	tick() {

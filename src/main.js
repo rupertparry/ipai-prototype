@@ -2,7 +2,12 @@ import {renderWorld, renderStats} from "./display";
 import Fish from "./fish";
 import Shark from './shark';
 import World from "./world";
-import {swimRandomly, eatNearbyFish} from './protocols';
+import {
+	eatAllNearbyFish,
+	eatFishIfHungry,
+	eatNoFish,
+	eatSharksIfTooMany
+} from './protocols';
 
 /* CONFIG */
 
@@ -14,14 +19,14 @@ const world = new World();
 
 world.createAgents({
 	type: Fish,
-	amount: 5,
-	protocols: [swimRandomly]
+	amount: 10,
+	protocols: []
 });
 
 world.createAgents({
 	type: Shark,
-	amount: 4,
-	protocols: [swimRandomly, eatNearbyFish]
+	amount: 2,
+	protocols: [eatSharksIfTooMany] // eatNoFish, eatAllNearbyFish, eatFishIfHungry
 });
 
 /* START */
